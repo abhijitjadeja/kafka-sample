@@ -1,6 +1,7 @@
 package kafka;
 
-import java.io.IOException;
+import static kafka.Utils.*;
+
 import java.util.Properties;
 import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.clients.producer.*;
@@ -18,14 +19,6 @@ public class Sender implements Runnable {
     Properties properties = new Properties();
     load(properties, "producer.properties");
     producer = new KafkaProducer<String, String>(properties);
-  }
-
-  static void load(Properties properties, String name) {
-    try {
-      properties.load(Sender.class.getResourceAsStream("/" + name));
-    } catch (IOException ioe) {
-      throw new RuntimeException(ioe);
-    }
   }
 
   @Override

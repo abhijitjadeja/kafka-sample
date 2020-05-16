@@ -1,6 +1,7 @@
 package kafka;
 
-import java.io.IOException;
+import static kafka.Utils.*;
+
 import java.util.*;
 import java.util.Collections;
 import java.util.Properties;
@@ -19,14 +20,6 @@ public class Receiver implements Runnable {
     consumer = new KafkaConsumer<String, String>(properties);
     consumer.subscribe(Collections.singletonList("test"));
     this.id = id;
-  }
-
-  static void load(Properties properties, String name) {
-    try {
-      properties.load(App.class.getResourceAsStream("/" + name));
-    } catch (IOException ioe) {
-      throw new RuntimeException(ioe);
-    }
   }
 
   @Override
