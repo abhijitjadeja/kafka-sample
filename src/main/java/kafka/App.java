@@ -1,18 +1,15 @@
 package kafka;
 
-import java.util.*;
-import org.apache.kafka.clients.consumer.*;
-import org.apache.kafka.clients.producer.*;
-
 public class App {
 
   public static void main(String[] args) {
-    Thread t = new Thread(new Sender());
+    Sender s = new Sender();
+    Thread t = new Thread(s);
     t.start();
-    Thread[] receivers = new Thread[10];
+    Receiver[] receivers = new Receiver[10];
     for (int i = 0; i < 10; i++) {
-      receivers[i] = new Thread(new Thread(new Receiver(i + 1)));
-      receivers[i].start();
+      receivers[i] = new Receiver(i + 1);
+      new Thread(receivers[i]).start();
     }
     try {
       Thread.sleep(100000);
@@ -21,7 +18,7 @@ public class App {
     for (int i = 0; i < 10; i++) {
       receivers[i].stop();
     }
-    t.stop();
+    s.stop();
     try {
       Thread.sleep(1000);
     } catch (Exception e) {

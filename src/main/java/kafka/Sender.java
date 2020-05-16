@@ -3,7 +3,6 @@ package kafka;
 import static kafka.Utils.*;
 
 import java.util.Properties;
-import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.clients.producer.*;
 
 public class Sender implements Runnable {

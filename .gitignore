@@ -1,7 +1,9 @@
-gradle
 build
 target
 .gradle
 *.java~
 *~
-
+.vscode
+.settings
+.project
+.classpath

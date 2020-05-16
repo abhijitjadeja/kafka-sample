@@ -34,7 +34,8 @@ dependencies {
 
 spotless {
   java {
-    googleJavaFormat()
+      removeUnusedImports() // removes any unused imports
+      googleJavaFormat()
   }
 }
 

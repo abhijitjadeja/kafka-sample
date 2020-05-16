@@ -2,11 +2,10 @@ package kafka;
 
 import static kafka.Utils.*;
 
-import java.util.*;
+import java.time.Duration;
 import java.util.Collections;
 import java.util.Properties;
 import org.apache.kafka.clients.consumer.*;
-import org.apache.kafka.clients.producer.*;
 
 public class Receiver implements Runnable {
 
@@ -25,12 +24,12 @@ public class Receiver implements Runnable {
   @Override
   public void run() {
     for (int i = 0; i < 99 || stop; i++) {
-      ConsumerRecords<String, String> messages = consumer.poll(1000);
+      ConsumerRecords<String, String> messages = consumer.poll(Duration.ofSeconds(1));
       messages.forEach(m -> System.out.println(id + "::" + m.value()));
     }
   }
 
-  public void close() {
+  public void stop() {
     stop = true;
     consumer.close();
   }
