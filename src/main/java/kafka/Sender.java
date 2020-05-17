@@ -32,6 +32,7 @@ public class Sender implements Runnable {
       }
       i++;
     }
+    System.out.println("Producer done");
   }
 
   public void stop() {

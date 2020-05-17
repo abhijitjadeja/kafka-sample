@@ -27,6 +27,7 @@ public class Receiver implements Runnable {
       ConsumerRecords<String, String> messages = consumer.poll(Duration.ofSeconds(1));
       messages.forEach(m -> System.out.println(id + "::" + m.value()));
     }
+    System.out.println("Receiver "+id+" done");
   }
 
   public void stop() {
