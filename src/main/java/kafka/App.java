@@ -1,8 +1,15 @@
 package kafka;
 
+import static kafka.Utils.*;
 public class App {
 
+ 
   public static void main(String[] args) {
+    MessageAdmin admin = new MessageAdmin();
+    if (!admin.topicExists(TOPIC)){
+        admin.createTopic(TOPIC);
+    }
+    admin.close();
     Sender s = new Sender();
     Thread t = new Thread(s);
     t.start();

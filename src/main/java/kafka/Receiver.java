@@ -17,7 +17,7 @@ public class Receiver implements Runnable {
     Properties properties = new Properties();
     load(properties, "consumer.properties");
     consumer = new KafkaConsumer<String, String>(properties);
-    consumer.subscribe(Collections.singletonList("test"));
+    consumer.subscribe(Collections.singletonList(TOPIC));
     this.id = id;
   }
 

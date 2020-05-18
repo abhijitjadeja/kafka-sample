@@ -25,7 +25,7 @@ public class Sender implements Runnable {
     int i = 0;
     while (!stop || i < 100) {
       producer.send(
-          new ProducerRecord<String, String>("test", Integer.toString(i), messages[i % 10]));
+          new ProducerRecord<String, String>(TOPIC, Integer.toString(i), messages[i % 10]));
       try {
         Thread.sleep(200);
       } catch (Exception e) {
